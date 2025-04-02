@@ -3,9 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="header">Вход</div>
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('children')">Ребёнок</div>
+            <div class="tab" onclick="showTab('specialist')">Специалист</div>
+        </div>
+        <form id="childrenForm">
+            <div class="form-group">
+                <label for="phoneChildren">Номер телефона:</label>
+                <input type="text" id="phoneChildren" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="passwordChildren">Пароль:</label>
+                <input type="password" id="passwordChildren" name="password">
+            </div>
+            <div class="form-group remember-me">
+                <input type="checkbox" id="rememberMeChildren" name="rememberMe">
+                <label for="rememberMeChildren">Запомнить меня</label>
+            </div>
+            <button type="button" class="button" onclick="login()">Войти</button>
+        </form>
+        <form id="specialistForm" style="display: none;">
+            <div class="form-group">
+                <label for="phoneSpecialist">Номер телефона:</label>
+                <input type="text" id="phoneSpecialist" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="passwordSpecialist">Пароль:</label>
+                <input type="password" id="passwordSpecialist" name="password">
+            </div>
+            <div class="form-group remember-me">
+                <input type="checkbox" id="rememberMeSpecialist" name="rememberMe">
+                <label for="rememberMeSpecialist">Запомнить меня</label>
+            </div>
+            <button type="button" class="button" onclick="login()">Войти</button>
+        </form>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            const childrenTab = document.querySelector('.tab.active');
+            childrenTab.classList.remove('active');
+            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                if (form.id === `${tabId}Form`) {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            });
+        }
+
+        function login() {
+            alert('Вы вошли в систему!');
+        }
+    </script>
 </body>
 </html>
